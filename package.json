@@ -1,25 +1,28 @@
 {
-  "name": "stages",
+  "name": "service",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint '**/*.js'",
-    "lint:fix": "prettier-eslint --write $PWD/'src/**/*.[jt]s?(x)' && eslint --fix ."
+    "dev": "nodemon -r dotenv/config --exec babel-node ./src/index.js",
+    "start": "node ./index.js",
+    "test": "jest",
+    "test:unit": "jest  --testPathPattern .*.test.js",
+    "test:e2e": "jest test/api",
+    "build": "npm run clean && babel src -d dist --copy-files",
+    "clean": "rimraf dist",
+    "lint": "eslint 'src/**/*.js'",
+    "lint:fix": "prettier-eslint 'src/**/*.js' --write",
+    "format": "prettier-eslint --write $PWD/'src/**/*.[jt]s?(x)' && eslint --fix ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint:fix",
-      "git add"
-    ]
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
@@ -28,9 +31,17 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.4.3",
     "prettier-eslint": "^9.0.1",
-    "prettier-eslint-cli": "^5.0.0"
+    "prettier-eslint-cli": "^5.0.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "@types/jest": "^25.2.1",
+    "babel-jest": "^25.2.6",
+    "dotenv": "^8.2.0",
+    "jest": "^25.2.7",
+    "nodemon": "^2.0.2",
+    "rimraf": "^3.0.2"
   }
 }
