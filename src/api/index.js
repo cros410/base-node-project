@@ -2,6 +2,7 @@ import express from 'express'
 import { urlencoded, json } from 'body-parser'
 import cors from 'cors'
 import helmet from 'helmet'
+import 'reflect-metadata'
 
 const app = express()
 
