@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config --exec babel-node ./src/index.js",
     "test": "jest",
+    "start": "node .",
     "test:watch": "jest --watch",
-    "build": "npm run clean && babel src -d dist --copy-files",
-    "clean": "rimraf dist",
+    "build": "npm run clean && babel src -d build --copy-files",
+    "clean": "rimraf build",
     "lint": "eslint 'src/**/*.js'",
-    "lint:fix": "prettier-eslint 'src/**/*.js' --write",
     "format": "prettier-eslint --write $PWD/'src/**/*.[jt]s?(x)' && eslint --fix ."
   },
   "keywords": [],
@@ -22,8 +22,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
+    "moment": "^2.27.0",
+    "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^5.21.7",
     "sqlite3": "^4.2.0",
     "typeorm": "^0.2.24"
   },

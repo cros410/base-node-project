@@ -3,8 +3,12 @@ import User from '../../models/User'
 
 export default async () => {
   const connection = await typeorm.createConnection({
-    type: 'sqlite',
-    database: './database.sqlite',
+    type: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: 'password',
+    database: 'base',
     synchronize: true,
     logging: false,
     entities: ['src/**/**.entity.js']
