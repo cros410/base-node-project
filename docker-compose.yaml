@@ -1,9 +1,24 @@
 version: '3'
 
 services:
-  basic-service:
-    container_name: base-node
-    build: .
+  mooc-backend:
+    image: mooc-backend
+    container_name: mooc-backend
     restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_URL=$MONGO_URL
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 4000:4000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:3.4.6
+    volumes:
+      - ./data/mongo:/data/db:delegated
+    ports:
+      - 27017:27017
